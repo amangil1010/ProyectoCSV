@@ -4,11 +4,15 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.TextArea;
 
 
 public class ArchivoCSV {
     Label label = new Label();
+    Label label2 = new Label();
+    
+    TextArea textArea = new TextArea();
+    
     String paisAnterior = "";
     String alturaAnterior = "";
     
@@ -28,9 +32,11 @@ public class ArchivoCSV {
                 paisAnterior = paisActual;
                 System.out.println(paisAnterior);
                 System.out.println(alturaAnterior);
+//                textArea.setText(paisAnterior + " " + alturaAnterior);
+                textArea.appendText(paisAnterior + " " + alturaAnterior + "\n");
+                label.setText(paisAnterior);
+                label2.setText(alturaAnterior);
             }
-            
-            VBox vbox = new VBox();
             
             texto = br.readLine();
         }
