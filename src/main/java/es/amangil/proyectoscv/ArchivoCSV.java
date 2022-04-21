@@ -10,37 +10,51 @@ import javafx.scene.control.TextArea;
 public class ArchivoCSV {
     Label label = new Label();
     Label label2 = new Label();
+    Label label3 = new Label();
     
     TextArea textArea = new TextArea();
     
     String paisAnterior = "";
+    String añoAnterior = "";
     String alturaAnterior = "";
     
+    Datos listaDatos = new Datos();
+
     public void leer(){
-    
+        
     String nombreFichero = "average-height-of-men-for-selected-countries.csv";
     BufferedReader br = null;
     try {
         br = new BufferedReader(new FileReader(nombreFichero));
         String texto = br.readLine();
+        texto = br.readLine();
         while(texto != null) {
             String[] valores = texto.split(",");
             String paisActual = valores[0];
+            String AñoActual = valores[2];
             String alturaActual = valores[3];
             if (paisAnterior.equals(paisActual) == false){
+                //
                 alturaAnterior = alturaActual;
+                añoAnterior = AñoActual;
                 paisAnterior = paisActual;
+                //
                 System.out.println(paisAnterior);
+                System.out.println(añoAnterior);
                 System.out.println(alturaAnterior);
-//                textArea.setText(paisAnterior + " " + alturaAnterior);
-                textArea.appendText(paisAnterior + " " + alturaAnterior + "\n");
+                //
+                textArea.appendText(paisAnterior + " " + añoAnterior + " " + alturaAnterior + "\n");
+                //
                 label.setText(paisAnterior);
-                label2.setText(alturaAnterior);
+                label2.setText(añoAnterior);
+                label3.setText(alturaAnterior);
+                //
+                
+                Dato p1 = new Dato(paisAnterior, añoAnterior, alturaAnterior);
+                listaDatos.getListaDato().add(p1);
             }
-            
             texto = br.readLine();
         }
-
     }
     catch (FileNotFoundException ex) {
         System.out.println("Error: Fichero no encontrado");
