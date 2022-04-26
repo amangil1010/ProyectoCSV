@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -11,8 +12,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -21,16 +28,14 @@ public class App extends Application {
 
     private TableView table = new TableView();
     
-    
     @Override
     public void start(Stage stage) {
 
         StackPane root = new StackPane();
         var scene = new Scene(root, 640, 500);
+        stage.setTitle("CSV Altura");
         stage.setScene(scene);
         stage.show();
-                
-        Dato dato = new Dato();
         
         ArchivoCSV archivoCSV = new ArchivoCSV();
         archivoCSV.leer();
@@ -41,6 +46,18 @@ public class App extends Application {
         
         TableView table = new TableView();
         table.setEditable(true);
+        table.setMaxHeight(200);
+        table.setMinHeight(200);
+        table.setMaxWidth(640);
+        table.setMinWidth(640);
+//        table.setStyle("-fx-background-color: red;");
+//        //
+//        table.setBorder(new Border(new BorderStroke(Color.valueOf("#ADD8E6"),
+//            BorderStrokeStyle.DASHED,
+//            CornerRadii.EMPTY,
+//            new BorderWidths(5))));
+
+//
         
         TableColumn colPais = new TableColumn("Pais");
         colPais.setMinWidth(206);
@@ -63,38 +80,31 @@ public class App extends Application {
 
         table.getItems().addAll(archivoCSV.listaDatos.getListaDato());
 //        table.getItems().addAll(p1);
-        
-//        final TextField addFirstName = new TextField();
-//        addFirstName.setPromptText("First Name");
-//        addFirstName.setMaxWidth(colPais.getPrefWidth());
-//        final TextField addLastName = new TextField();
-//        addLastName.setMaxWidth(colAño.getPrefWidth());
-//        addLastName.setPromptText("Last Name");
-//        final TextField addEmail = new TextField();
-//        addEmail.setMaxWidth(colEstatura.getPrefWidth());
-//        addEmail.setPromptText("Email");
-//        
-//        final Button addButton = new Button("Add");
-//        addButton.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override
-//            public void handle(ActionEvent e) {
-////                data.add(new Person(
-////                        addFirstName.getText(),
-////                        addLastName.getText(),
-////                        addEmail.getText()));
-////                addFirstName.clear();
-////                addLastName.clear();
-////                addEmail.clear();
-//            }
-//        });
+       
+///////////////////////
+        Button buttonSelecFile = new Button("Guardar");
+        buttonSelecFile.setAlignment(Pos.CENTER);
+        buttonSelecFile.setLayoutY(0);
+        buttonSelecFile.setOnAction((t) -> {
+        archivoCSV.guardarDatosCSV();
+        });
+//////////////////////
         
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
         vbox.setPadding(new Insets(10, 0, 0, 10));
-        vbox.getChildren().addAll(label, table);
-        root.getChildren().add(vbox);
+//        vbox.getChildren().addAll(label, table, buttonSelecFile);
+        
         System.out.println("ARRY: " + archivoCSV.listaDatos.getListaDato().size());
-         
+        
+        VBox vbox2 = new VBox();
+        vbox2.setAlignment(Pos.CENTER);
+        vbox2.getChildren().addAll(buttonSelecFile);
+        
+        VBox vbox3 = new VBox();
+        
+        vbox.getChildren().addAll(label, table, vbox2, vbox3);
+        root.getChildren().add(vbox);
     }
 
     public static void main(String[] args) {
