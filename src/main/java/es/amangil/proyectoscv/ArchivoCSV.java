@@ -17,11 +17,12 @@ public class ArchivoCSV {
     Label label3 = new Label();
         
     String paisAnterior = "";
-    String añoAnterior = "";
-    String alturaAnterior = "";
+    int añoAnterior = 0;
+    float alturaAnterior = 0;
+    float alturaAñoSeleccionado = 0;
     
     Datos listaDatos = new Datos();
-
+    App app = new App();
     
     public void leer(){
     String nombreFichero = "average-height-of-men-for-selected-countries.csv";
@@ -33,17 +34,21 @@ public class ArchivoCSV {
         while(texto != null) {
             String[] valores = texto.split(",");
             String paisActual = valores[0];
-            String AñoActual = valores[2];
-            String alturaActual = valores[3];
+            int AñoActual = Integer.valueOf(valores[2]);
+            float alturaActual = Float.valueOf(valores[3]);
+//            if (app.añoSeleccionado == AñoActual){
+//                alturaAñoSeleccionado =  alturaActual;
+//            }
             if (paisAnterior.equals(paisActual) == false){
                 //
                 alturaAnterior = alturaActual;
                 añoAnterior = AñoActual;
                 paisAnterior = paisActual;
                 //
-                System.out.println(paisAnterior);
-                System.out.println(añoAnterior);
-                System.out.println(alturaAnterior);
+                System.out.println("Pais: " + paisAnterior);
+                System.out.println("Año: " + añoAnterior);
+                System.out.println("AlturaUltima: " + alturaAnterior);
+//                System.out.println("AlturaEseAño: " + alturaAñoSeleccionado);
                 //
                 Dato p1 = new Dato(paisAnterior, añoAnterior, alturaAnterior);
                 listaDatos.getListaDato().add(p1);

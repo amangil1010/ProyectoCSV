@@ -27,6 +27,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     private TableView table = new TableView();
+    int añoSeleccionado;
     
     @Override
     public void start(Stage stage) {
@@ -68,11 +69,15 @@ public class App extends Application {
         TableColumn colEstatura = new TableColumn("Estatura");
         colEstatura.setMinWidth(206);
         
+//        TableColumn colEstaturaDiferencial = new TableColumn("EstaturaDiferencial");
+//        colEstatura.setMinWidth(206);
+        
         table.getColumns().addAll(colPais, colAño, colEstatura);
            
         colPais.setCellValueFactory(new PropertyValueFactory<>("Pais"));
         colAño.setCellValueFactory(new PropertyValueFactory<>("Año"));
         colEstatura.setCellValueFactory(new PropertyValueFactory<>("Estatura"));
+//        colEstaturaDiferencial.setCellValueFactory(new PropertyValueFactory<>("EstaturaDiferencial"));
 
 //        Dato p1 = new Dato("España", "Perez", "2012-11-01");
 //        Dato p2 = new Dato("Maria", "Loza", "2013-01-15");
@@ -88,6 +93,8 @@ public class App extends Application {
         buttonSelecFile.setOnAction((t) -> {
         archivoCSV.guardarDatosCSV();
         });
+        
+        
 //////////////////////
         
         final VBox vbox = new VBox();
@@ -102,6 +109,18 @@ public class App extends Application {
         vbox2.getChildren().addAll(buttonSelecFile);
         
         VBox vbox3 = new VBox();
+        vbox3.setAlignment(Pos.CENTER);
+        TextField textField = new TextField ();
+        
+        Button buttonvisualizar = new Button("Visualizar");
+        buttonvisualizar.setAlignment(Pos.CENTER);
+        buttonvisualizar.setOnAction((t) -> {
+            int añoSeleccionado = Integer.valueOf(textField.getText());
+            System.out.println("HOLA" + añoSeleccionado);
+        });
+        
+        vbox3.getChildren().addAll(textField, buttonvisualizar);
+
         
         vbox.getChildren().addAll(label, table, vbox2, vbox3);
         root.getChildren().add(vbox);

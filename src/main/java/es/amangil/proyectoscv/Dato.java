@@ -3,14 +3,15 @@ package es.amangil.proyectoscv;
 public class Dato {
     
     private String Pais;
-    private String Año;
-    private String Estatura;
+    private int Año;
+    private float Estatura;
+    private float AlturaDeAñoSeleccionado;
     
     public Dato(){
         
     }
-    
-    public Dato(String Pais, String Año, String Estatura){
+    //
+    public Dato(String Pais, int Año, float Estatura){
         this.Pais = Pais;
         this.Año = Año;
         this.Estatura = Estatura;
@@ -24,19 +25,28 @@ public class Dato {
         this.Pais = Pais;
     }
     //
-    public String getAño() {
+    public int getAño() {
         return Año;
     }
     
-    public void setAño(String Año){
+    public void setAño(int Año){
         this.Año = Año;
     }
     //
-    public String getEstatura() {
+    public float getEstatura() {
         return Estatura;
     }
     
-    public void setEstatura(String Estatura){
+    public void setEstatura(float Estatura){
         this.Estatura = Estatura;
     }
+    //
+    public float getAlturaDeAñoSeleccionado() {
+        return AlturaDeAñoSeleccionado;
+    }
+    
+    public void setAlturaDeAñoSeleccionado(float AlturaDeAñoSeleccionado){
+        this.AlturaDeAñoSeleccionado = AlturaDeAñoSeleccionado;
+    }
+    
 }
