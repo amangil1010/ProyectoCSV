@@ -34,9 +34,9 @@ public class ArchivoCSV {
         texto = br.readLine();
         while(texto != null) {
             String[] valores = texto.split(",");
-            String paisActual = valores[0];
-            int AñoActual = Integer.valueOf(valores[2]);
-            float alturaActual = Float.valueOf(valores[3]);
+            String paisActual = valores[0];//Saca el primero valor del archivo 
+            int AñoActual = Integer.valueOf(valores[2]);//Saca el segundo valor del archivo 
+            float alturaActual = Float.valueOf(valores[3]);//Saca el tercer valor del archivo 
             //Esto sirve para que seleccione el año que selecciona el año
             if (App.añoSeleccionado == AñoActual){
                 alturaAñoSeleccionado =  alturaActual;

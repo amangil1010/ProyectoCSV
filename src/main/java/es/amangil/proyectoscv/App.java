@@ -51,27 +51,27 @@ public class App extends Application {
         table.setMinHeight(300);
         table.setMaxWidth(800);
         table.setMinWidth(800);
-        table.setStyle("-fx-background-color: black;");
-        table.setBorder(new Border(new BorderStroke(Color.valueOf("#FFFFFF"),
+        table.setStyle("-fx-background-color: black;");//Cambiar linea de borde
+        table.setBorder(new Border(new BorderStroke(Color.valueOf("#FFFFFF"),//Cambiar linea de borde
             BorderStrokeStyle.DASHED,
             CornerRadii.EMPTY,
             new BorderWidths(5))));
         
         //Creamos las columnas
         TableColumn colPais = new TableColumn("Pais");
-        colPais.setMinWidth(161);
+        colPais.setMinWidth(161);//Tamaño
         //
         TableColumn colAño = new TableColumn("Año");
-        colAño.setMinWidth(161);
+        colAño.setMinWidth(161);//Tamaño
         //
         TableColumn colEstatura = new TableColumn("Estatura");
-        colEstatura.setMinWidth(161);
+        colEstatura.setMinWidth(161);//Tamaño
         //
         TableColumn colEstaturaDiferencial = new TableColumn("EstaturaDeAñoSeleccionado");
-        colEstatura.setMinWidth(161);
+        colEstatura.setMinWidth(161);//Tamaño
         //
         TableColumn colDiferenciaDeAltura = new TableColumn("DiferenciaDeAltura");
-        colEstatura.setMinWidth(161);
+        colEstatura.setMinWidth(161);//Tamaño
         //Las añadimos a la tabla
         table.getColumns().addAll(colPais, colAño, colEstatura, colEstaturaDiferencial, colDiferenciaDeAltura);
         //Aqui indicamos como se llaman las variables que vamos a introducir
@@ -80,10 +80,6 @@ public class App extends Application {
         colEstatura.setCellValueFactory(new PropertyValueFactory<>("Estatura"));
         colEstaturaDiferencial.setCellValueFactory(new PropertyValueFactory<>("AlturaDeAñoSeleccionado"));
         colDiferenciaDeAltura.setCellValueFactory(new PropertyValueFactory<>("DiferenciaDeAltura"));
-
-//        Dato p1 = new Dato("España", "Perez", "2012-11-01");
-//        Dato p2 = new Dato("Maria", "Loza", "2013-01-15");
-//        Dato p3 = new Dato("Adriana", "Mendez", "2014-07-20");
         //Aqui introducimos el ArrayList para que consiga los datos de ahi
         table.getItems().addAll(archivoCSV.listaDatos.getListaDato());
         //Creamos el boton que cuando le demos se guarde el CSV
@@ -116,13 +112,13 @@ public class App extends Application {
             System.out.println("añoSeleccionado: " + añoSeleccionado);
             System.out.println("alturaAñoSeleccionado: " + archivoCSV.alturaAñoSeleccionado);
             archivoCSV.leer();
-            archivoCSV.listaDatos.getListaDato().clear();
-            System.out.println("MOSTRAR EL TAMAÑO DE LA LISTA: " + archivoCSV.listaDatos.getListaDato().size());
-            table.refresh();
-            table.getItems().clear();
-            table.refresh();
-            archivoCSV.leer();
-            table.getItems().addAll(archivoCSV.listaDatos.getListaDato());
+            archivoCSV.listaDatos.getListaDato().clear();//Limpiamos la lista
+            System.out.println("MOSTRAR EL TAMAÑO DE LA LISTA: " + archivoCSV.listaDatos.getListaDato().size());//Miramos el tamaño de la lista
+            table.refresh();//Refrescamos la tabla
+            table.getItems().clear();//Limpiamos la tabla
+            table.refresh();//Refrescamos la tabla
+            archivoCSV.leer();//Llamamos al metodo
+            table.getItems().addAll(archivoCSV.listaDatos.getListaDato());//Añadimos a la tabla
         });
         vbox3.getChildren().addAll(textField, buttonvisualizar);
         //Agregar al VBOX principal
