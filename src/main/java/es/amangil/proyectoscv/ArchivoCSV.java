@@ -11,22 +11,20 @@ import javafx.stage.Stage;
 
 
 public class ArchivoCSV {
-    
+    //Label
     Label label = new Label();
     Label label2 = new Label();
     Label label3 = new Label();
-        
+    //
     String paisAnterior = "";
     int añoAnterior = 0;
     float alturaAnterior = 0;
     float alturaAñoSeleccionado = 0;
     float diferenciaDeAltura = 0;
-    
+    //Lista
     Datos listaDatos = new Datos();
-//    App app = new App();
-
     
-    
+    //Metodo para leer el documento CSV
     public void leer(){
     String nombreFichero = "average-height-of-men-for-selected-countries.csv";
     BufferedReader br = null;
@@ -39,10 +37,12 @@ public class ArchivoCSV {
             String paisActual = valores[0];
             int AñoActual = Integer.valueOf(valores[2]);
             float alturaActual = Float.valueOf(valores[3]);
+            //Esto sirve para que seleccione el año que selecciona el año
             if (App.añoSeleccionado == AñoActual){
                 alturaAñoSeleccionado =  alturaActual;
                 System.out.println("alturaAñoSeleccionado DEL IF DESPUES: " + alturaAñoSeleccionado);
             }
+            //Esto sirve para visualizar el primer año de cada pais
             if (paisAnterior.equals(paisActual) == false){
                 diferenciaDeAltura=alturaAñoSeleccionado-alturaAnterior;
                 //
@@ -86,38 +86,39 @@ public class ArchivoCSV {
     
     
     
-    
-        public void guardarDatosCSV() {
-        String nombreFichero = "nuevo.csv";
-        String texto = "Texto de prueba";
-        BufferedWriter bw = null;
+    //Esto sirve para guardar el filtrado en un txt
+    public void guardarDatosCSV() {
+    String nombreFichero = "Archivo.csv";
+    String texto = "Texto de prueba";
+    BufferedWriter bw = null;
+    try {
+        //Crear un objeto BufferedWriter. Si ya existe el fichero, 
+        //  se borra automáticamente su contenido anterior.
+        bw = new BufferedWriter(new FileWriter(nombreFichero));
+        //Escribir en el fichero el texto con un salto de línea
+        //Hacemos un for para que "muestre" todos los paises, años, estatura, etc
+        for (int x=0; x<listaDatos.getListaDato().size(); x++) {
+            bw.write(listaDatos.getListaDato().get(x).getPais() + "," + listaDatos.getListaDato().get(x).getAño() + "," + listaDatos.getListaDato().get(x).getEstatura() + "," + listaDatos.getListaDato().get(x).getAlturaDeAñoSeleccionado() + "," + listaDatos.getListaDato().get(x).getDiferenciaDeAltura() + "\n");
+        }
+    }
+    // Comprobar si se ha producido algún error
+    catch(Exception ex) {
+       System.out.println("Error de escritura del fichero");
+       ex.printStackTrace();
+    }
+    // Asegurar el cierre del fichero en cualquier caso
+    finally {
         try {
-            //Crear un objeto BufferedWriter. Si ya existe el fichero, 
-            //  se borra automáticamente su contenido anterior.
-            bw = new BufferedWriter(new FileWriter(nombreFichero));
-            //Escribir en el fichero el texto con un salto de línea
-            for (int x=0; x<listaDatos.getListaDato().size(); x++) {
-                bw.write(listaDatos.getListaDato().get(x).getPais() + "," + listaDatos.getListaDato().get(x).getAño() + "," + listaDatos.getListaDato().get(x).getEstatura() +  "\n");
-            }
+            // Cerrar el fichero si se ha podido abrir
+            if(bw != null)
+                bw.close();
         }
-        // Comprobar si se ha producido algún error
-        catch(Exception ex) {
-           System.out.println("Error de escritura del fichero");
-           ex.printStackTrace();
+        catch (Exception ex) {
+            System.out.println("Error al cerrar el fichero");
+            ex.printStackTrace();
         }
-        // Asegurar el cierre del fichero en cualquier caso
-        finally {
-            try {
-                // Cerrar el fichero si se ha podido abrir
-                if(bw != null)
-                    bw.close();
-            }
-            catch (Exception ex) {
-                System.out.println("Error al cerrar el fichero");
-                ex.printStackTrace();
-            }
-        }          
-            }
+    }          
+        }
 
 
-        }
+    }

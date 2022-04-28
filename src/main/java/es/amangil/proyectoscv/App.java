@@ -1,8 +1,6 @@
 package es.amangil.proyectoscv;
 
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,8 +10,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderStroke;
+import javafx.scene.layout.BorderStrokeStyle;
+import javafx.scene.layout.BorderWidths;
+import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -29,7 +33,7 @@ public class App extends Application {
     public void start(Stage stage) {
 
         StackPane root = new StackPane();
-        var scene = new Scene(root, 800, 500);
+        var scene = new Scene(root, 815, 500);
         stage.setTitle("CSV Altura");
         stage.setScene(scene);
         stage.show();
@@ -40,77 +44,71 @@ public class App extends Application {
         final Label label = new Label("Estatura Ultimo Año");
         label.setFont(new Font("Arial", 20));
         
+        //Creamos la tabla
         TableView table = new TableView();
         table.setEditable(true);
         table.setMaxHeight(300);
         table.setMinHeight(300);
         table.setMaxWidth(800);
         table.setMinWidth(800);
-//        table.setStyle("-fx-background-color: red;");
-//        //
-//        table.setBorder(new Border(new BorderStroke(Color.valueOf("#ADD8E6"),
-//            BorderStrokeStyle.DASHED,
-//            CornerRadii.EMPTY,
-//            new BorderWidths(5))));
-
-//
+        table.setStyle("-fx-background-color: black;");
+        table.setBorder(new Border(new BorderStroke(Color.valueOf("#FFFFFF"),
+            BorderStrokeStyle.DASHED,
+            CornerRadii.EMPTY,
+            new BorderWidths(5))));
         
+        //Creamos las columnas
         TableColumn colPais = new TableColumn("Pais");
-        colPais.setMinWidth(165);
-        
+        colPais.setMinWidth(161);
+        //
         TableColumn colAño = new TableColumn("Año");
-        colAño.setMinWidth(165);
-        
+        colAño.setMinWidth(161);
+        //
         TableColumn colEstatura = new TableColumn("Estatura");
-        colEstatura.setMinWidth(165);
-        
+        colEstatura.setMinWidth(161);
+        //
         TableColumn colEstaturaDiferencial = new TableColumn("EstaturaDeAñoSeleccionado");
-        colEstatura.setMinWidth(165);
-        
+        colEstatura.setMinWidth(161);
+        //
         TableColumn colDiferenciaDeAltura = new TableColumn("DiferenciaDeAltura");
-        colEstatura.setMinWidth(165);
-        
+        colEstatura.setMinWidth(161);
+        //Las añadimos a la tabla
         table.getColumns().addAll(colPais, colAño, colEstatura, colEstaturaDiferencial, colDiferenciaDeAltura);
-           
+        //Aqui indicamos como se llaman las variables que vamos a introducir
         colPais.setCellValueFactory(new PropertyValueFactory<>("Pais"));
         colAño.setCellValueFactory(new PropertyValueFactory<>("Año"));
         colEstatura.setCellValueFactory(new PropertyValueFactory<>("Estatura"));
         colEstaturaDiferencial.setCellValueFactory(new PropertyValueFactory<>("AlturaDeAñoSeleccionado"));
         colDiferenciaDeAltura.setCellValueFactory(new PropertyValueFactory<>("DiferenciaDeAltura"));
 
-
 //        Dato p1 = new Dato("España", "Perez", "2012-11-01");
 //        Dato p2 = new Dato("Maria", "Loza", "2013-01-15");
 //        Dato p3 = new Dato("Adriana", "Mendez", "2014-07-20");
-
+        //Aqui introducimos el ArrayList para que consiga los datos de ahi
         table.getItems().addAll(archivoCSV.listaDatos.getListaDato());
-        
-///////////////////////
+        //Creamos el boton que cuando le demos se guarde el CSV
         Button buttonSelecFile = new Button("Guardar");
         buttonSelecFile.setAlignment(Pos.CENTER);
         buttonSelecFile.setLayoutY(0);
         buttonSelecFile.setOnAction((t) -> {
             archivoCSV.guardarDatosCSV();
         });
-        
-        
-//////////////////////
-        
+        //Creacion del 1º VBOX
         final VBox vbox = new VBox();
         vbox.setSpacing(5);
-        vbox.setPadding(new Insets(10, 0, 0, 10));
-//        vbox.getChildren().addAll(label, table, buttonSelecFile);
-        
+        vbox.setPadding(new Insets(10, 0, 0, 10));        
         System.out.println("ARRY: " + archivoCSV.listaDatos.getListaDato().size());
         
+        //Creacion del 2º VBOX
         VBox vbox2 = new VBox();
         vbox2.setAlignment(Pos.CENTER);
         vbox2.getChildren().addAll(buttonSelecFile);
         
+        //Creacion del 3º VBOX
         VBox vbox3 = new VBox();
         vbox3.setAlignment(Pos.CENTER);
         TextField textField = new TextField ();
-        
+        //Creacion del boton para la comparativa de años
         Button buttonvisualizar = new Button("Visualizar");
         buttonvisualizar.setAlignment(Pos.CENTER);
         buttonvisualizar.setOnAction((t) -> {
@@ -125,12 +123,11 @@ public class App extends Application {
             table.refresh();
             archivoCSV.leer();
             table.getItems().addAll(archivoCSV.listaDatos.getListaDato());
-
         });
-        
         vbox3.getChildren().addAll(textField, buttonvisualizar);
-        
+        //Agregar al VBOX principal
         vbox.getChildren().addAll(label, table, vbox2, vbox3);
+        //Añadirlo al root
         root.getChildren().add(vbox);
     }
 
