@@ -4,7 +4,7 @@ Algeria,1910,168.8
 Angola,1810,160.5
 Argentina,1810,168.8
 Armenia,1850,169.3
-Australia,1850,170
+Australia,1850,170.0
 Austria,1820,163.7
 Azerbaijan,1850,170.2
 Bahrain,1930,160.7
@@ -21,7 +21,7 @@ Burundi,1920,166.1
 Cambodia,1840,161.6
 Cameroon,1810,165.9
 Canada,1810,171.5
-Cape Verde,1980,169
+Cape Verde,1980,169.0
 Central African Republic,1880,167.1
 Chad,1870,169.8
 Chile,1950,169.6
@@ -34,13 +34,13 @@ Cote d'Ivoire,1810,165.1
 Croatia,1810,163.2
 Cuba,1870,167.1
 Cyprus,1860,168.8
-Czechia,1810,164
+Czechia,1810,164.0
 Democratic Republic of Congo,1810,163.3
-Denmark,1820,167
+Denmark,1820,167.0
 Djibouti,1980,168.9
 Dominican Republic,1940,167.4
 Egypt,1850,166.4
-Equatorial Guinea,1930,169
+Equatorial Guinea,1930,169.0
 Eritrea,1860,166.3
 Estonia,1840,166.7
 Eswatini,1930,168.8
@@ -58,14 +58,14 @@ Guinea,1870,169.9
 Guinea-Bissau,1810,165.4
 Guyana,1880,159.2
 Haiti,1920,166.9
-Honduras,1950,164
+Honduras,1950,164.0
 Hong Kong,1930,167.7
 Hungary,1810,164.7
 India,1840,160.3
 Indonesia,1810,161.3
 Iran,1850,165.3
 Iraq,1880,168.4
-Ireland,1810,168
+Ireland,1810,168.0
 Israel,1850,169.1
 Italy,1810,164.1
 Jamaica,1890,170.2
@@ -77,7 +77,7 @@ Kyrgyzstan,1880,165.3
 Laos,1840,159.6
 Latvia,1840,166.5
 Lebanon,1850,166.5
-Lesotho,1900,168
+Lesotho,1900,168.0
 Liberia,1910,165.4
 Libya,1890,166.5
 Lithuania,1840,165.3
@@ -85,7 +85,7 @@ Madagascar,1860,163.9
 Malawi,1870,166.7
 Malaysia,1840,159.3
 Mali,1850,166.5
-Mauritania,1900,169
+Mauritania,1900,169.0
 Mexico,1810,161.3
 Moldova,1840,165.1
 Mongolia,1910,162.6
@@ -94,7 +94,7 @@ Mozambique,1810,164.1
 Myanmar,1850,161.1
 Namibia,1900,166.7
 Nepal,1880,162.4
-Netherlands,1810,166
+Netherlands,1810,166.0
 New Zealand,1860,172.4
 Nicaragua,1950,165.6
 Niger,1870,167.3
@@ -103,18 +103,18 @@ North Korea,1870,163.4
 North Macedonia,1900,167.7
 Norway,1810,168.6
 Pakistan,1840,165.1
-Palestine,1950,171
-Panama,1980,170
+Palestine,1950,171.0
+Panama,1980,170.0
 Papua New Guinea,1880,152.4
 Paraguay,1900,165.6
 Peru,1810,163.4
-Philippines,1860,155
+Philippines,1860,155.0
 Poland,1840,163.1
 Portugal,1810,165.5
 Puerto Rico,1890,164.5
-Romania,1840,164
+Romania,1840,164.0
 Russia,1810,159.8
-Rwanda,1910,172
+Rwanda,1910,172.0
 Saudi Arabia,1940,169.2
 Senegal,1810,165.4
 Serbia,1850,166.2
@@ -125,13 +125,13 @@ Slovenia,1870,168.3
 Somalia,1880,172.8
 South Africa,1890,170.4
 South Korea,1870,163.4
-Spain,1830,161
+Spain,1830,161.0
 Sri Lanka,1870,162.5
-Sudan,1870,168
+Sudan,1870,168.0
 Sweden,1830,168.1
 Switzerland,1820,167.6
 Syria,1850,166.3
-Tajikistan,1860,165
+Tajikistan,1860,165.0
 Tanzania,1870,167.8
 Thailand,1860,160.1
 Togo,1860,165.3
@@ -144,9 +144,9 @@ Ukraine,1820,164.1
 United Arab Emirates,1980,169.1
 United Kingdom,1810,169.7
 United States,1820,172.2
-Uruguay,1880,165
+Uruguay,1880,165.0
 Uzbekistan,1890,165.2
 Vietnam,1830,157.9
 Yemen,1850,162.3
 Zambia,1940,168.1
-Zimbabwe,1890,169
+Zimbabwe,1890,169.0

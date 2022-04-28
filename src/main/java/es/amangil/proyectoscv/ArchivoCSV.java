@@ -20,9 +20,12 @@ public class ArchivoCSV {
     int añoAnterior = 0;
     float alturaAnterior = 0;
     float alturaAñoSeleccionado = 0;
+    float diferenciaDeAltura = 0;
     
     Datos listaDatos = new Datos();
-    App app = new App();
+//    App app = new App();
+
+    
     
     public void leer(){
     String nombreFichero = "average-height-of-men-for-selected-countries.csv";
@@ -36,10 +39,12 @@ public class ArchivoCSV {
             String paisActual = valores[0];
             int AñoActual = Integer.valueOf(valores[2]);
             float alturaActual = Float.valueOf(valores[3]);
-//            if (app.añoSeleccionado == AñoActual){
-//                alturaAñoSeleccionado =  alturaActual;
-//            }
+            if (App.añoSeleccionado == AñoActual){
+                alturaAñoSeleccionado =  alturaActual;
+                System.out.println("alturaAñoSeleccionado DEL IF DESPUES: " + alturaAñoSeleccionado);
+            }
             if (paisAnterior.equals(paisActual) == false){
+                diferenciaDeAltura=alturaAñoSeleccionado-alturaAnterior;
                 //
                 alturaAnterior = alturaActual;
                 añoAnterior = AñoActual;
@@ -50,8 +55,9 @@ public class ArchivoCSV {
                 System.out.println("AlturaUltima: " + alturaAnterior);
 //                System.out.println("AlturaEseAño: " + alturaAñoSeleccionado);
                 //
-                Dato p1 = new Dato(paisAnterior, añoAnterior, alturaAnterior);
+                Dato p1 = new Dato(paisAnterior, añoAnterior, alturaAnterior, alturaAñoSeleccionado, diferenciaDeAltura);
                 listaDatos.getListaDato().add(p1);
+                System.out.println("------------------------" + alturaAñoSeleccionado);
             }
             texto = br.readLine();
         }
@@ -77,6 +83,9 @@ public class ArchivoCSV {
         }
     }
     }
+    
+    
+    
     
         public void guardarDatosCSV() {
         String nombreFichero = "nuevo.csv";

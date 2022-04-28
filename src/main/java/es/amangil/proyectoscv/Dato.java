@@ -6,6 +6,7 @@ public class Dato {
     private int Año;
     private float Estatura;
     private float AlturaDeAñoSeleccionado;
+    private float DiferenciaDeAltura;
     
     public Dato(){
         
@@ -15,6 +16,14 @@ public class Dato {
         this.Pais = Pais;
         this.Año = Año;
         this.Estatura = Estatura;
+    }
+    //
+    public Dato(String Pais, int Año, float Estatura, float AlturaDeAñoSeleccionado, float DiferenciaDeAltura){
+        this.Pais = Pais;
+        this.Año = Año;
+        this.Estatura = Estatura;
+        this.AlturaDeAñoSeleccionado = AlturaDeAñoSeleccionado;
+        this.DiferenciaDeAltura = DiferenciaDeAltura;
     }
     //
     public String getPais() {
@@ -47,6 +56,14 @@ public class Dato {
     
     public void setAlturaDeAñoSeleccionado(float AlturaDeAñoSeleccionado){
         this.AlturaDeAñoSeleccionado = AlturaDeAñoSeleccionado;
+    }
+    //
+    public float getDiferenciaDeAltura() {
+        return DiferenciaDeAltura;
+    }
+    
+    public void setDiferenciaDeAltura(float DiferenciaDeAltura){
+        this.DiferenciaDeAltura = DiferenciaDeAltura;
     }
     
 }

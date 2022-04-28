@@ -1,8 +1,8 @@
 package es.amangil.proyectoscv;
 
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -12,14 +12,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
@@ -27,18 +21,19 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     private TableView table = new TableView();
-    int añoSeleccionado;
+    static float añoSeleccionado ;
+    ArchivoCSV archivoCSV = new ArchivoCSV();
+
     
     @Override
     public void start(Stage stage) {
 
         StackPane root = new StackPane();
-        var scene = new Scene(root, 640, 500);
+        var scene = new Scene(root, 800, 500);
         stage.setTitle("CSV Altura");
         stage.setScene(scene);
         stage.show();
         
-        ArchivoCSV archivoCSV = new ArchivoCSV();
         archivoCSV.leer();
         archivoCSV.listaDatos.getListaDato();
                 
@@ -47,10 +42,10 @@ public class App extends Application {
         
         TableView table = new TableView();
         table.setEditable(true);
-        table.setMaxHeight(200);
-        table.setMinHeight(200);
-        table.setMaxWidth(640);
-        table.setMinWidth(640);
+        table.setMaxHeight(300);
+        table.setMinHeight(300);
+        table.setMaxWidth(800);
+        table.setMinWidth(800);
 //        table.setStyle("-fx-background-color: red;");
 //        //
 //        table.setBorder(new Border(new BorderStroke(Color.valueOf("#ADD8E6"),
@@ -61,37 +56,41 @@ public class App extends Application {
 //
         
         TableColumn colPais = new TableColumn("Pais");
-        colPais.setMinWidth(206);
+        colPais.setMinWidth(165);
         
         TableColumn colAño = new TableColumn("Año");
-        colAño.setMinWidth(206);
+        colAño.setMinWidth(165);
         
         TableColumn colEstatura = new TableColumn("Estatura");
-        colEstatura.setMinWidth(206);
+        colEstatura.setMinWidth(165);
         
-//        TableColumn colEstaturaDiferencial = new TableColumn("EstaturaDiferencial");
-//        colEstatura.setMinWidth(206);
+        TableColumn colEstaturaDiferencial = new TableColumn("EstaturaDeAñoSeleccionado");
+        colEstatura.setMinWidth(165);
         
-        table.getColumns().addAll(colPais, colAño, colEstatura);
+        TableColumn colDiferenciaDeAltura = new TableColumn("DiferenciaDeAltura");
+        colEstatura.setMinWidth(165);
+        
+        table.getColumns().addAll(colPais, colAño, colEstatura, colEstaturaDiferencial, colDiferenciaDeAltura);
            
         colPais.setCellValueFactory(new PropertyValueFactory<>("Pais"));
         colAño.setCellValueFactory(new PropertyValueFactory<>("Año"));
         colEstatura.setCellValueFactory(new PropertyValueFactory<>("Estatura"));
-//        colEstaturaDiferencial.setCellValueFactory(new PropertyValueFactory<>("EstaturaDiferencial"));
+        colEstaturaDiferencial.setCellValueFactory(new PropertyValueFactory<>("AlturaDeAñoSeleccionado"));
+        colDiferenciaDeAltura.setCellValueFactory(new PropertyValueFactory<>("DiferenciaDeAltura"));
+
 
 //        Dato p1 = new Dato("España", "Perez", "2012-11-01");
 //        Dato p2 = new Dato("Maria", "Loza", "2013-01-15");
 //        Dato p3 = new Dato("Adriana", "Mendez", "2014-07-20");
 
         table.getItems().addAll(archivoCSV.listaDatos.getListaDato());
-//        table.getItems().addAll(p1);
-       
+        
 ///////////////////////
         Button buttonSelecFile = new Button("Guardar");
         buttonSelecFile.setAlignment(Pos.CENTER);
         buttonSelecFile.setLayoutY(0);
         buttonSelecFile.setOnAction((t) -> {
-        archivoCSV.guardarDatosCSV();
+            archivoCSV.guardarDatosCSV();
         });
         
         
@@ -115,12 +114,21 @@ public class App extends Application {
         Button buttonvisualizar = new Button("Visualizar");
         buttonvisualizar.setAlignment(Pos.CENTER);
         buttonvisualizar.setOnAction((t) -> {
-            int añoSeleccionado = Integer.valueOf(textField.getText());
-            System.out.println("HOLA" + añoSeleccionado);
+            añoSeleccionado = Integer.valueOf(textField.getText());
+            System.out.println("añoSeleccionado: " + añoSeleccionado);
+            System.out.println("alturaAñoSeleccionado: " + archivoCSV.alturaAñoSeleccionado);
+            archivoCSV.leer();
+            archivoCSV.listaDatos.getListaDato().clear();
+            System.out.println("MOSTRAR EL TAMAÑO DE LA LISTA: " + archivoCSV.listaDatos.getListaDato().size());
+            table.refresh();
+            table.getItems().clear();
+            table.refresh();
+            archivoCSV.leer();
+            table.getItems().addAll(archivoCSV.listaDatos.getListaDato());
+
         });
         
         vbox3.getChildren().addAll(textField, buttonvisualizar);
-
         
         vbox.getChildren().addAll(label, table, vbox2, vbox3);
         root.getChildren().add(vbox);
